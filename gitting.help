@@ -1,7 +1,5 @@
 nivell git
 ===========================
-Clonar un projecte complet
-git clone <link>
 
 TREE
 Crear una branca
@@ -43,8 +41,30 @@ git push origin :<branch deley>
 
 
 
+Comensar un
+=========================
 
+Clonar un projecte complet
+git clone <link>
+Clonar nomes una branca
+git clone -b <branch> --single-branch <link>
+
+
+git config --global user.name "TresLos"
+git config --global user.email asistare7@gmail.com
 
 
 
 Testejant i efectuant nous i nous i mes nous canvis muhahahaha
+aqui un missatge
+ Committer: ARNAU SISTACH REINOSO <asistare7.alumnes@ub052229.mat.ub.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
