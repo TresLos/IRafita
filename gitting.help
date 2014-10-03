@@ -1,0 +1,42 @@
+nivell git
+===========================
+Clonar un projecte complet
+git clone <link>
+
+TREE
+Crear una branca
+git checkout -b <nom nova branch>
+
+Unir tots els canvis "delicat"
+git merge <branch delet>
+
+Eliminar
+git branch -d <destrozar branch>
+Forza eliminacio
+git branch -d <destrozar branch>
+
+
+
+Observar
+------------------
+Veure les branques que tens
+git branch
+
+
+
+nivell servidor
+==========================
+pujar una branca
+git push origin <nom branch>
+
+
+No ho tinc clar, pero se fa anar al inici algun cop
+git remote add <link?>
+
+
+Descargar
+git fetch <link>
+
+
+Eliminar branch
+git push origin :<branch deley>
