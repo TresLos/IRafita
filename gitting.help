@@ -48,7 +48,13 @@ Clonar un projecte complet
 git clone <link>
 Clonar nomes una branca
 git clone -b <branch> --single-branch <link>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6c84c6270be371dcc0e9d9ca35d7ac42cfd4dac7
+
+git config --global user.name "TresLos"
+git config --global user.email asistare7@gmail.com
 
 git config --global user.name "TresLos"
 git config --global user.email asistare7@gmail.com
@@ -68,7 +74,10 @@ You can suppress this message by setting them explicitly:
 After doing this, you may fix the identity used for this commit with:
 
     git commit --amend --reset-author
+<<<<<<< HEAD
 
 
 Petits canvis nomes per a testeix
 putes muhaha
+=======
+>>>>>>> 6c84c6270be371dcc0e9d9ca35d7ac42cfd4dac7
