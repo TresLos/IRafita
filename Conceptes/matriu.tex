@@ -1,0 +1,90 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+\author{Sistach Reinoso, Arnau}
+
+% orientat matemàticament
+\usepackage{amsmath} % mínim per els cases
+
+% auto ajuda, fer més entenedor tot el que faig
+\usepackage{color} % http://latexcolor.com/
+\newcommand{\green}[1]{{\color{green}#1}}
+
+\newenvironment{rcases}
+	{\left.\begin{aligned}}
+	{\end{aligned}\right\rbrace}
+
+
+% Llegenda
+% - atenció: normalment que m'agradaria completar alguna cosa. /atenci
+% Colors
+%	Vermell, 
+%	Blau,
+%	Verd,
+\title{Matrius}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Plantejaments que fan possible els conceptes de matrius}
+Sistemes d'equacions lineals
+\begin{equation*}
+\begin{rcases}
+x - 2y + z	&= 0	\\
+2x + y - 3z	&= 5	\\
+x - 5y + 2z	&= -1
+\end{rcases}\quad
+\begin{aligned}
+2y - z	&= x	\\
+5y - 5z	&= 5	\\
+-3y + z	&= -1
+\end{aligned}\quad
+\begin{aligned}
+y &= 0\\z &= -1\\x &= 1
+\end{aligned}
+\end{equation*}
+Actualment no cal, però no estaria malament arribar a programar-ho
+% atenció, m'agradaria arribar a fer el programa que em resolgués aquest estil de Sistemes d'equacions
+
+\part{\green{Definicions}}
+%\section*{Matriu} Un altre tipus d'estil, aquest em faria estalviar el problema de tenir una taula massa gran
+\section{Matriu}
+\begin{equation*}
+\begin{aligned}
+m &\text{ files}\\
+n &\text{ columnes}
+\end{aligned}\quad
+\begin{aligned}
+\forall 1 \le i \le m\\
+\forall 1 \le j \le n
+\end{aligned}\quad
+A_{m, n} = \begin{pmatrix} a_{ij} \end{pmatrix} =
+\begin{pmatrix}
+	a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
+	a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
+	\vdots  & \vdots  & \ddots & \vdots  \\
+	a_{m,1} & a_{m,2} & \cdots & a_{m,n}
+\end{pmatrix}
+\end{equation*}
+
+\section{Matriu igual}
+\begin{equation*}
+A = B \Rightarrow \forall i,j \quad a_{i,j} = b_{i,j}
+\end{equation*}
+
+\section{Classificació}
+\begin{itemize}
+\item matriu fila
+	$$ \begin{pmatrix} a_{1,1} & a_{1,2} & \cdots & a_{1,n} \end{pmatrix} $$
+\item matriu columna
+	$$ \begin{pmatrix} a_{1,1} \\a_{2,1} \\\vdots \\a_{m,1} \end{pmatrix} $$
+\item matriu nu\lgem a o matriu zero
+	$$ 0 = \begin{pmatrix} 0 & \cdots & 0\\\vdots & \ddots & \vdots\\0&\cdots&0 \end{pmatrix} $$
+\item matriu quadrada
+	$$A_{n,n}$$
+\item matriu rectangular
+	$$m \neq n\quad A_{m,n}$$
+\end{itemize}
+
+\end{document}
