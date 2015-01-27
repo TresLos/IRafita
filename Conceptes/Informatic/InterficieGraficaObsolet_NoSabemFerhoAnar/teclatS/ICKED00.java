@@ -4,6 +4,8 @@
 package teclatS;
 
 import javax.swing.JFrame;
+
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.ActionListener;
 
@@ -29,6 +31,10 @@ public class ICKED00 extends JFrame// implements KeyListener, ActionListener
 		frame.setVisible (true);
 	}
 	// private void addComponentsToPane() {
+    /** Handle the key released event from the text field. */
+    public void keyReleased(KeyEvent e) {
+        System.out.println ("Furule!");
+    }
 }
 /*
    Ara, crec que ja ho tinc entes :)
