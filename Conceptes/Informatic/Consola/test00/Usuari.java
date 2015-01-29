@@ -10,11 +10,13 @@ public class Usuari
 {
 	Reader reader;
 	boolean endProgram;
-	public Usuari ()
+	controlador vigila;
+	public Usuari (controlador e)
 	{
 /* Inicialitzar les variables */
 		Console console = System.console ();
 		reader = console.reader ();
+		vigila = e;
 
 		FirstMenu ();
 	}
@@ -33,6 +35,9 @@ public class Usuari
 		{
 			case 'h':
 				System.out.println ("\nNo hi ha ajuda o.O\n");
+				break;
+			case 'c':
+				System.out.println (vigila.PelCamiBuscat ());
 				break;
 			case 'q':/* Recordar, aquest sera l'ultim */
 				System.out.println ("\nEsperem que hagi pogut fer tot el desitjat. Fins aviat ;)\n");

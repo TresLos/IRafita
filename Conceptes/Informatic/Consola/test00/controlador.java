@@ -11,7 +11,7 @@ public class controlador
 	Usuari caca;
 	public controlador ()
 	{
-		caca = new Usuari ();
+		caca = new Usuari (this);
 /* Em apareix un nou dubte, com que no vull que aquest esperi la caca, m'agradaria que la mateixa tingues poder
    tal com per a cridar el mateix controlador, segurament haure de fer mes nivells de controladors */
 	}
