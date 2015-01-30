@@ -1,5 +1,6 @@
 package src;
 
+import src.Cmain;
 /**
   * Per aqui passara la gran majoria d'informacio, tot i que se fara res per aqui
   */
