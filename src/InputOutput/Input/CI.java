@@ -18,4 +18,7 @@ public class CI
 		user = new KeyControler		(this);
 		file = new FileControler	(this);
 	}
+
+	public void Begin ()		{ user.Begin (); }
+	public void Error (String e)	{ up.Error (e); }
 }

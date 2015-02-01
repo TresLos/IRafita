@@ -8,4 +8,6 @@ public class WindowControler
 	public WindowControler (CO e)
 	{
 	}
+
+	public void Error (String e) { System.out.println (e); }
 }

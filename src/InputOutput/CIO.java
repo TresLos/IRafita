@@ -18,4 +18,7 @@ public class CIO
 		input	= new CI (this);
 		output	= new CO (this);
 	}
+
+	public void Begin ()		{ input.Begin (); }
+	public void Error (String e)	{ output.Error (e); }
 }

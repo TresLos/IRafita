@@ -10,5 +10,8 @@ public class Cmain
 	public Cmain ()
 	{
 		InputOutputControler = new CIO (this);
+
+/* Un cop tot inicialitzat, ja pot comencar el programa */
+		InputOutputControler.Begin ();
 	}
 }
