@@ -5,6 +5,8 @@ import src.InputOutput.CIO;
 import src.InputOutput.Input.Key.KeyControler;
 import src.InputOutput.Input.File.FileControler;
 
+import src.Understand.Control_Shunting_yard_algorithm;
+
 public class CI
 {
 /* Classes necessaries a aquesta classe */
