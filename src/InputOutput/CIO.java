@@ -21,4 +21,10 @@ public class CIO
 
 	public void Begin ()		{ input.Begin (); }
 	public void Error (String e)	{ output.Error (e); }
+
+/* Missatges d'ajuda */
+	public void PHelperFistMenu	() { output.PHelperFistMenu	(); }
+	public void PHelperFistMenuC	() { output.PHelperFistMenuC	(); }
+	public void PHelperFistMenuH	() { output.PHelperFistMenuH	(); }
+	public void PHelperFistMenuQ	() { output.PHelperFistMenuQ	(); }
 }

@@ -23,4 +23,10 @@ public class CI
 
 	public void Begin ()		{ user.Begin (); }
 	public void Error (String e)	{ up.Error (e); }
+
+/* Missatges d'ajuda */
+	public void PHelperFistMenu	() { up.PHelperFistMenu		(); }
+	public void PHelperFistMenuC	() { up.PHelperFistMenuC	(); }
+	public void PHelperFistMenuH	() { up.PHelperFistMenuH	(); }
+	public void PHelperFistMenuQ	() { up.PHelperFistMenuQ	(); }
 }

@@ -22,32 +22,22 @@ public class ReadKey
 		reader = console.reader ();
 	}
 
-	public void Begin ()
-	{
-		FirstMenu ();
-	}
+	public void Begin () { FirstMenu (); }
 
-	public void FirstMenu ()
-	{
-		while (keep)
-		{
+	public void FirstMenu () { while (keep)	{
 			try			{ FirstOption ((char) reader.read ()); }
-			catch (IOException ex)	{ up.Error (ex.toString ()); }
-		}
-	}
+			catch (IOException ex)	{ up.Error (ex.toString ()); } } }
 
-	public void FirstOption (char e)
-	{
-		switch (e)
-		{
-		case 'c':
-			System.out.println ("J");
-			break;
-		case 'h':
-			System.out.println ("dJ");
-			break;
-		case 'q':
-			keep = false;
-		}
-	}
+	public void FirstOption (char e) { switch (e) {
+		case 'c': System.out.println ("J"); break;
+		case 'h': PHelperFistMenu	(); break;
+		case 'q': keep = false; } }
+
+	public void PHelperFistMenu ()
+	{ try{ switch (reader.read ()) {
+		case 'c':	up.PHelperFistMenuC	(); break;
+		case 'h':	up.PHelperFistMenuH	(); break;
+		case 'q':	up.PHelperFistMenuQ	(); break;
+		default:	up.PHelperFistMenu	();
+		} } catch (IOException ex) {up.Error (ex.toString ()); } }
 }

@@ -14,9 +14,15 @@ public class CO
 	public CO (CIO e)
 	{
 		up = e;
-		file = new FileControler	(this);
-		user = new WindowControler	(this);// Crec que aquest sobra 'this'
+		file = new FileControler	();
+		user = new WindowControler	();// Crec que aquest sobra 'this'
 	}
 
 	public void Error (String e) { user.Error (e); }
+
+/* Missatges d'ajuda */
+	public void PHelperFistMenu	() { user.PHelperFistMenu	(); }
+	public void PHelperFistMenuC	() { user.PHelperFistMenuC	(); }
+	public void PHelperFistMenuH	() { user.PHelperFistMenuH	(); }
+	public void PHelperFistMenuQ	() { user.PHelperFistMenuQ	(); }
 }

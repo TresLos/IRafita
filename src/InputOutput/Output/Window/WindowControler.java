@@ -1,13 +1,17 @@
 package src.InputOutput.Output.Window;
 
-import src.InputOutput.Output.CO;
-
 public class WindowControler
 {
-// En un futur proxim, aqui l'usuari es comunicara amb l'ordinador
-	public WindowControler (CO e)
-	{
-	}
+/* Classes necessaries a aquesta classe */
+	private WriteWindows printer;
 
-	public void Error (String e) { System.out.println (e); }
+	public WindowControler () { printer = new WriteWindows (); }
+
+	public void Error (String e) { printer.Error (e); }
+
+/* Missatges d'ajuda */
+	public void PHelperFistMenu	() { printer.PHelperFistMenu	(); }
+	public void PHelperFistMenuC	() { printer.PHelperFistMenuC	(); }
+	public void PHelperFistMenuH	() { printer.PHelperFistMenuH	(); }
+	public void PHelperFistMenuQ	() { printer.PHelperFistMenuQ	(); }
 }
