@@ -1,0 +1,42 @@
+\documentclass[border=2]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{tikz, times}
+\usetikzlibrary{mindmap, backgrounds}
+
+\begin{document}
+\centering\begin{tikzpicture}[mindmap,% No pillo que fa xD
+	level 1 concept/.append style={level distance=130,sibling angle=30},
+	extra concept/.append style={color=blue!50,text=black}]
+
+% El primer de tots, el controlador dels grans controladors
+\begin{scope}[mindmap, concept color=orange, text=white]
+\node [concept] {Cmain} [clockwise from=-5]% ni idea
+	child [grow=180]	{node [concept] (intout)	{InputOutput}}
+	child [grow=-100]	{node [concept]			{main}}
+	child [grow=0]		{node [concept] (math) 		{Mathemàtic}};
+\end{scope}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Input Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{scope}[mindmap, concept color=red,text=white]
+\node [concept] (CIO) at (-5, -4) {CIO}
+	child [grow=160]	{node [concept] (input)		{Input}}
+	child [grow=-80]	{node [concept] (output)	{Output}};
+\end{scope}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End Input Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Coneccions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{pgfonlayer}{background}
+\draw [circle connection bar, fill=red, draw=green]
+	(intout) edge (CIO);
+\end{pgfonlayer}
+
+\end{tikzpicture}
+\end{document}
