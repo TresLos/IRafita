@@ -13,23 +13,45 @@
 \begin{document}
 \begin{tikzpicture}[node distance = 2cm, auto]
 
-% Nodes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Nucli, principal
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\node [draw, terminal] (start) {Sort Input tokens};
 	\node [draw, process, below of=start] (newVar) {output = new Queue; stack = new Stack};
 	\node [draw, decision, below of=newVar] (mainWhile) {tokens.hasNext};
 	\node [draw, process, below of=mainWhile, node distance=2.5cm] (lectura) {token = tokens.next};
-% Directes
 	\node [draw, decision, below of=lectura] (numero) {token.isNumber};
 		\node [draw, process, right of=numero, node distance=3.5cm] (fiDigit) {output.add (token)};
 	\node [draw, decision, below of=numero, node distance=3.5cm] (funcio) {token.isFuntion};
-		\node [draw, process, right of=funcio, node distance=4cm] (fiFuncio) {stack.push (token)};
+		\node [draw, process, right of=funcio, node distance=3.5cm] (fiFuncio) {stack.push (token)};
 % no pillo
 % Until the token at the top of the stack is a left parenthesis, pop operators off the stack onto the output queue. If no left parentheses are encountered, either the separator was misplaced or parentheses were mismatched
 	\node [draw, decision, below of=funcio, node distance=3.5cm] (funcioArgumentSeparador) {token.isSeparator};
-		\node [draw, right of=funcioArgumentSeparador, node distance=4.5cm] (fiSeparador) {No se que he de fer};
-
+		\node [draw, predproc, right of=funcioArgumentSeparador, node distance=4cm] (fiSeparador) {No se que he de fer};
+	\node [draw, decision, below of=funcioArgumentSeparador, node distance=3.5cm] (operacio) {token.isOperator};
+		\node [draw, predproc, right of=operacio, node distance=3.5cm] (fiOperacio) {tokenOperator};
+	\node [draw, decision, below of=operacio, node distance=4cm] (openParentesis) {token.isLparentesis};
+		\node [draw, process, right of=openParentesis, node distance=3.5cm] (fioParentesis) {stack.add (token)};
+	\node [draw, decision, below of=openParentesis, node distance=4cm] (rightParentesis) {token.isRparentesis};
+		\node [draw, predproc, right of=rightParentesis, node distance=4cm] (fiRparentesis) {tokenParentesis};
 % fletxes
-\draw[->] (start) -- (newVar);
+\draw[->] (start)	-- (newVar);
+\draw[->] (newVar)	-- (mainWhile);
+\draw[->] (mainWhile)	-- node[anchor=east] {Yes} (lectura);
+\draw[->] (lectura)	-- (numero);
+\draw[->] (numero)	-- node[anchor=east] {No} (funcio);
+	\draw[->] (numero)	-- node[anchor=south] {Y} (fiDigit);
+	\draw[->] (fiDigit) |- (mainWhile.-80);
+\draw[->] (funcio)	-- node[anchor=east] {No} (funcioArgumentSeparador);
+	\draw[->] (funcio)	-- node[anchor=south] {Y} (fiFuncio);
+	\draw[->] (fiFuncio)	-- + (2, 0) |- (mainWhile.-70);
+\draw[->] (funcioArgumentSeparador)	-- node[anchor=east] {No} (operacio);
+	\draw[->] (funcioArgumentSeparador)	-- node[anchor=south] {Y} (fiSeparador);
+	\draw[->] (fiSeparador)	-- + (2, 0) |- (mainWhile);
+\draw[->] (operacio)	-- node[anchor=east] {No} (openParentesis);
+	\draw[->] (operacio)	-- node[anchor=south] {Y} (fiOperacio);
+	\draw[->] (fiOperacio)	-- + (3, 0) |- (mainWhile);
+\draw[->] (openParentesis)	-- node[anchor=east] {No} (rightParentesis);
 
 \end{tikzpicture}
 \end{document}
