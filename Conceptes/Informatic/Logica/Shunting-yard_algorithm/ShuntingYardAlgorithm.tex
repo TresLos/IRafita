@@ -19,6 +19,10 @@
 	\node [draw, terminal] (start) {Sort Input tokens};
 	\node [draw, process, below of=start] (newVar) {output = new Queue; stack = new Stack};
 	\node [draw, decision, below of=newVar] (mainWhile) {tokens.hasNext};
+	\node [draw, decision, left of=mainWhile, node distance=4cm] (FinalStack) {stack.hasNext};
+		\node [draw, process, left of=FinalStack, node distance=4cm] (finalVuitStack) {output.add (stack.pop)};
+		\node [draw, storage, below of=FinalStack] (EndCorrectSYA) {output};
+		\node [draw, terminal, below of=EndCorrectSYA] (EndCorrectSYA2) {End program};
 	\node [draw, process, below of=mainWhile, node distance=2.5cm] (lectura) {token = tokens.next};
 	\node [draw, decision, below of=lectura] (numero) {token.isNumber};
 		\node [draw, process, right of=numero, node distance=3.5cm] (fiDigit) {output.add (token)};
@@ -34,24 +38,34 @@
 		\node [draw, process, right of=openParentesis, node distance=3.5cm] (fioParentesis) {stack.add (token)};
 	\node [draw, decision, below of=openParentesis, node distance=4cm] (rightParentesis) {token.isRparentesis};
 		\node [draw, predproc, right of=rightParentesis, node distance=4cm] (fiRparentesis) {tokenParentesis};
-% fletxes
+	\node [draw, terminal, below of=rightParentesis, node distance=3cm] (ERRORnotIdentifiquet) {ERROR, no identificat};
+\draw[->] (mainWhile)	-- node[anchor=south] {No} (FinalStack);
+	\draw[->] (FinalStack)	-- node[anchor=south] {Yes} (finalVuitStack);
+		\draw[->] (finalVuitStack.-90) |- (FinalStack.-130);
+	\draw[->] (FinalStack)	-- node[anchor=east] {No} (EndCorrectSYA);
+	\draw[->] (EndCorrectSYA) -- (EndCorrectSYA2);
 \draw[->] (start)	-- (newVar);
 \draw[->] (newVar)	-- (mainWhile);
 \draw[->] (mainWhile)	-- node[anchor=east] {Yes} (lectura);
 \draw[->] (lectura)	-- (numero);
 \draw[->] (numero)	-- node[anchor=east] {No} (funcio);
 	\draw[->] (numero)	-- node[anchor=south] {Y} (fiDigit);
-	\draw[->] (fiDigit) |- (mainWhile.-80);
+	\draw[->] (fiDigit) |- (mainWhile.-50);
 \draw[->] (funcio)	-- node[anchor=east] {No} (funcioArgumentSeparador);
 	\draw[->] (funcio)	-- node[anchor=south] {Y} (fiFuncio);
-	\draw[->] (fiFuncio)	-- + (2, 0) |- (mainWhile.-70);
+	\draw[->] (fiFuncio)	-- + (2, 0) |- (mainWhile.-30);
 \draw[->] (funcioArgumentSeparador)	-- node[anchor=east] {No} (operacio);
 	\draw[->] (funcioArgumentSeparador)	-- node[anchor=south] {Y} (fiSeparador);
-	\draw[->] (fiSeparador)	-- + (2, 0) |- (mainWhile);
+	\draw[->] (fiSeparador)	-- + (2, 0) |- (mainWhile.-10);
 \draw[->] (operacio)	-- node[anchor=east] {No} (openParentesis);
 	\draw[->] (operacio)	-- node[anchor=south] {Y} (fiOperacio);
-	\draw[->] (fiOperacio)	-- + (3, 0) |- (mainWhile);
+	\draw[->] (fiOperacio)	-- + (3, 0) |- (mainWhile.10);
 \draw[->] (openParentesis)	-- node[anchor=east] {No} (rightParentesis);
+	\draw[->] (openParentesis)	-- node[anchor=south] {Y} (fioParentesis);
+	\draw[->] (fioParentesis)	-- + (3.5, 0) |- (mainWhile.30);
+\draw[->] (rightParentesis)	-- node[anchor=east] {No} (ERRORnotIdentifiquet);
+	\draw[->] (rightParentesis)	-- node[anchor=south] {Y} (fiRparentesis);
+	\draw[->] (fiRparentesis)	-- + (3.5, 0) |- (mainWhile.50);
 
 \end{tikzpicture}
 \end{document}
