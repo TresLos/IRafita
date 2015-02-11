@@ -66,6 +66,33 @@
 \draw[->] (rightParentesis)	-- node[anchor=east] {No} (ERRORnotIdentifiquet);
 	\draw[->] (rightParentesis)	-- node[anchor=south] {Y} (fiRparentesis);
 	\draw[->] (fiRparentesis)	-- + (3.5, 0) |- (mainWhile.50);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Desconegut
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node [draw, terminal, right of=start, node distance=13cm] (noSeQueheDeFer) {$?_?^?$};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% operator
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node [draw, terminal, right of=noSeQueheDeFer] (Soperator) {tokenOperator};
+\node [draw, decision, below of=Soperator, node distance=3cm] (IsO2Operator) {stak.peekIsOperator};
+\node [draw, decision, below of=IsO2Operator, node distance=4cm] (compareOperation) {Left and $o_1 \leq o_2$};
+\node [draw, decision, below of=compareOperation, node distance=4cm] (compareOperation2) {Right and $o_1 < o_2$};
+\node [draw, process, right of=compareOperation2, node distance=5.5cm] (endingOperator) {output.add (stack.pop)};
+\node [draw, process, below of=compareOperation2, node distance=3cm] (endOperator) {stak.add (token)};
+%\node [draw, terminal, below of=endOperator] (fiOperator) {return};
+\draw[->] (Soperator)	-- (IsO2Operator);
+\draw[->] (IsO2Operator)	-- node[anchor=east] {Yes} (compareOperation);
+	\draw[->] (IsO2Operator)	-- node[anchor=south] {No} + (-3, 0) |- (endOperator);
+\draw[->] (compareOperation)	-- node[anchor=east] {No} (compareOperation2);
+	\draw[->] (compareOperation)	-| node[anchor=south] {Yes} (endingOperator);
+\draw[->] (compareOperation2)	-- node[anchor=east] {No} (endOperator);
+	\draw[->] (compareOperation2)	-- node[anchor=south] {Yes} (endingOperator);
+\draw[->] (endingOperator)	|- (endOperator);
+%\draw[->] (end)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Parentesis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node [draw, terminal, right of=Soperator, node distance=8cm] (Rparentesis) {Si treballa};
 
 \end{tikzpicture}
 \end{document}
