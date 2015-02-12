@@ -19,7 +19,9 @@
 	\node [draw, terminal] (start) {Sort Input tokens};
 	\node [draw, process, below of=start] (newVar) {output = new Queue; stack = new Stack};
 	\node [draw, decision, below of=newVar] (mainWhile) {tokens.hasNext};
-	\node [draw, decision, left of=mainWhile, node distance=4cm] (FinalStack) {stack.hasNext};
+	\node [draw, decision, left of=mainWhile, node distance=6cm] (FinalStack) {stack.hasNext};
+		\node [draw, decision, above of=FinalStack, node distance=3.5cm] (VigilarErrorFiParentesis) {stack.IsParentesis};
+	\node [draw, terminal, left of=VigilarErrorFiParentesis, node distance=5.5cm] (ErrorParentesis) {ERROR parentesis desaparellades};
 		\node [draw, process, left of=FinalStack, node distance=4cm] (finalVuitStack) {output.add (stack.pop)};
 		\node [draw, storage, below of=FinalStack] (EndCorrectSYA) {output};
 		\node [draw, terminal, below of=EndCorrectSYA] (EndCorrectSYA2) {End program};
@@ -40,8 +42,10 @@
 		\node [draw, predproc, right of=rightParentesis, node distance=4cm] (fiRparentesis) {tokenParentesis};
 	\node [draw, terminal, below of=rightParentesis, node distance=3cm] (ERRORnotIdentifiquet) {ERROR, no identificat};
 \draw[->] (mainWhile)	-- node[anchor=south] {No} (FinalStack);
-	\draw[->] (FinalStack)	-- node[anchor=south] {Yes} (finalVuitStack);
-		\draw[->] (finalVuitStack.-90) |- (FinalStack.-130);
+	\draw[->] (FinalStack)	-- node[anchor=east] {Yes} (VigilarErrorFiParentesis);
+		\draw[->] (VigilarErrorFiParentesis.-135)	-- node[anchor=north] {No}  +(-1, 0) -| (finalVuitStack);
+		\draw[->] (VigilarErrorFiParentesis)	-- node[anchor=south] {Yes} (ErrorParentesis);
+		\draw[->] (finalVuitStack) -- (FinalStack);
 	\draw[->] (FinalStack)	-- node[anchor=east] {No} (EndCorrectSYA);
 	\draw[->] (EndCorrectSYA) -- (EndCorrectSYA2);
 \draw[->] (start)	-- (newVar);
@@ -73,7 +77,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % operator
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\node [draw, terminal, right of=noSeQueheDeFer] (Soperator) {tokenOperator};
+\node [draw, terminal, right of=noSeQueheDeFer, node distance=10cm] (Soperator) {tokenOperator};
 \node [draw, decision, below of=Soperator, node distance=3cm] (IsO2Operator) {stak.peekIsOperator};
 \node [draw, decision, below of=IsO2Operator, node distance=4cm] (compareOperation) {Left and $o_1 \leq o_2$};
 \node [draw, decision, below of=compareOperation, node distance=4cm] (compareOperation2) {Right and $o_1 < o_2$};
@@ -92,7 +96,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Parentesis
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\node [draw, terminal, right of=Soperator, node distance=8cm] (Rparentesis) {Si treballa};
+\node [draw, terminal, right of=Soperator, node distance=13cm] (Rparentesis) {tokenParentesis};
+\node [draw, decision, below of=Rparentesis] (TenimStacks) {stack.hasNext};
+	\node [draw, terminal, left of=TenimStacks, node distance=4.5cm] (ErrorParentesisNoParella) {Error, no tanca el parentesis};
+\node [draw, decision, below of=TenimStacks, node distance=3.5cm] (MirarSiParentesis) {stack.isLparentesis};
+	\node [draw, process, right of=MirarSiParentesis, node distance=4cm] (popCami) {output.add(stack.pop)};
+	\node [draw, process, left of=MirarSiParentesis, node distance=3.5cm] (Fi1Parentesis) {stack.pop};
+\node [draw, decision, below of=MirarSiParentesis, node distance=4cm] (MirarFuncio) {stack.isFuntion};
+	\node [draw, process, below of=MirarFuncio, node distance=2.5cm] (popFinal) {output.add(stack.pop)};
+\draw[->] (Rparentesis)	-- (TenimStacks);
+\draw[->] (TenimStacks)	-- node[anchor=south] {No} (ErrorParentesisNoParella);
+	\draw[->] (TenimStacks)	-- node[anchor=east] {Yes} (MirarSiParentesis);
+\draw[->] (MirarSiParentesis)	-- node[anchor=east] {No} (MirarFuncio);
+	\draw[->] (MirarSiParentesis)	-- node[anchor=south] {Yes} (Fi1Parentesis);
+\draw[->] (MirarFuncio)	-- node[anchor=east] {Yes} (popFinal);
+	\draw[->] (MirarFuncio)	-- node[anchor=south] {No} + (2, 0) -| (popCami);
+	\draw[->] (popCami) |- (TenimStacks);
 
 \end{tikzpicture}
 \end{document}
